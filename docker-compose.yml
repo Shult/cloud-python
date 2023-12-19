@@ -8,7 +8,6 @@ services:
     volumes:
       - mongodb_data:/data/db
       - ./dataBase/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-    restart: always
 
   product-service:
     build: ./product
@@ -16,7 +15,6 @@ services:
       - ./product:/usr/src/app
     ports:
       - 5001:80
-    restart: always
 
   website:
     image: php:apache
@@ -26,7 +24,6 @@ services:
       - 5002:80
     depends_on:
       - product-service
-    restart: always
 
 volumes:
   mongodb_data:
